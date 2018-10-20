@@ -7,6 +7,13 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Iterator;
 
+
+/**
+ * 测试 equal hashcode
+ * https://blog.csdn.net/justloveyou_/article/details/52464440
+ * 所以equals()相等的情况下hashCode()肯定相等，但是hashCode()相等的情况下equals()不一定相等。
+ * 详细笔记在有道里面
+ **/
 public class HashSetTest {
 
     @Test
@@ -21,7 +28,6 @@ public class HashSetTest {
             Person b = i.next();
             System.out.println(b.toString());
         }
-
     }
 
 

@@ -50,9 +50,4 @@ public class Jdk8TimeTest {
         System.out.println(late);       // 23:59:59
     }
 
-
-    @Test
-    public void test() {
-
-    }
 }

@@ -55,8 +55,6 @@ public class Jdk8MapTest {
             else
                 map.remove(key);
         }*/
-
-
         map.computeIfPresent("aaa", (x, y) -> x + "present" + y);
         //aaapresentaaa
         System.out.println(map.get("aaa"));

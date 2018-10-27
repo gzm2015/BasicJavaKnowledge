@@ -4,7 +4,9 @@ import org.junit.Test;
 import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.Assert.*;
 
-
+/**
+ * AtomicInteger和AtomicLong、AtomicBoolean、AtomicReference差不多
+ */
 public class AtomicIntegerTest {
 
     @Test

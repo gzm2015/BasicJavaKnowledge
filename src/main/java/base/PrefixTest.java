@@ -5,6 +5,7 @@ import org.junit.Test;
 /**
  * @author LiuMengKe
  * @create 2018-10-21-18:03
+ * idea 快捷键
  */
 public class PrefixTest {
 

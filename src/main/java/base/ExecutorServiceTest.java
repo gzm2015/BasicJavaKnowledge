@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ExecutorTest {
+public class ExecutorServiceTest {
 
 	@Test
 	public void executeTest(){
@@ -17,11 +17,7 @@ public class ExecutorTest {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			cachedThreadPool.execute(new Runnable() {
-				public void run() {
-					System.out.println(index);
-				}
-			});
+			cachedThreadPool.execute(()-> System.out.println(index));
 		}
 	}
 }

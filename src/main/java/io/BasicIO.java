@@ -49,13 +49,12 @@ public class BasicIO {
         try {
             courseFile = directory.getCanonicalPath();
             System.out.println(courseFile);
-            System.out.println(FileInputStreamTest.class.getResource("")+"source.txt");
-            System.out.println(FileInputStreamTest.class.getResource("/")+"source.txt");
-            System.out.println(FileInputStreamTest.class.getResource("").getPath()+"source.txt");
-            System.out.println(FileInputStreamTest.class.getResource("/").getPath()+"source.txt");
+            System.out.println(BasicIO.class.getResource("")+"source.txt");
+            System.out.println(BasicIO.class.getResource("/")+"source.txt");
+            System.out.println(BasicIO.class.getResource("").getPath()+"source.txt");
+            System.out.println(BasicIO.class.getResource("/").getPath()+"source.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

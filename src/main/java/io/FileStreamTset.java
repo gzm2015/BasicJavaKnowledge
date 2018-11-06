@@ -6,11 +6,13 @@ import java.io.*;
 
 /**
  * @author LiuMengKe
- * @create 2018-11-05-16:16
+ * @create 2018-11-06-10:20
  */
-public class FileInputStreamTest extends BasicIO{
+public class FileStreamTset extends BasicIO{
 
-    public static void main(String[] args) {
+
+    @Test
+    public void testFileInputStream() {
         InputStream inputStream = null;
         try {
             inputStream  = new FileInputStream(getSourcePath("source.txt"));
@@ -34,6 +36,24 @@ public class FileInputStreamTest extends BasicIO{
         }
     }
 
-
-
+    @Test
+    public void testFileOutputStream() {
+        OutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(getSourcePath("source.txt"));
+            String append = new String("appendffffffffffffffffffffffffffffff");
+            outputStream.write(append.getBytes());
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(outputStream!=null){
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

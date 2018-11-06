@@ -7,7 +7,7 @@ import java.io.*;
  * @create 2018-11-05-17:20
  * 对比字节流和buffer效率
  */
-public class ByteBufferCompareTest extends BasicIO{
+public class ByteBufferedCompareTest extends BasicIO{
 
 
 

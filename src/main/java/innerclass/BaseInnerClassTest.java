@@ -4,6 +4,7 @@ package innerclass;
  * @author LiuMengKe
  * @create 2018-11-01-10:38
  * 内部类练习
+ * https://www.cnblogs.com/dolphin0520/p/3811445.html
  */
 public class BaseInnerClassTest {
 

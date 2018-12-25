@@ -1,4 +1,4 @@
-package proxy;
+package proxy.dynamicproxy;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

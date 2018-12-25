@@ -1,5 +1,7 @@
 package java8;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.*;
@@ -13,7 +15,7 @@ import java.util.stream.Stream;
  * @author LiuMengKe
  * @create 2018-05-25-9:18
  */
-public class Jdk8StreamAndOptionalTest {
+public class StreamAndOptionalTest {
 
     List<String> myList =
             Arrays.asList("a1", "a2", "b1", "c2", "c1");
@@ -272,4 +274,102 @@ public class Jdk8StreamAndOptionalTest {
     }
 
 
+    public class Human {
+
+        private String name;
+        private int age;
+
+        public Human(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Human{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
+    }
+
+    public class Person {
+
+        private String name;
+
+        private Son son;
+
+        public Person(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Son getSun() {
+            return son;
+        }
+
+        public void setSun(Son son) {
+            this.son = son;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "name='" + name + '\'' +
+                    '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Person person = (Person) o;
+            return Objects.equals(name, person.name);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(name);
+        }
+    }
+
+    @Data
+    @AllArgsConstructor
+    public class Son {
+
+        private String name;
+
+        @Override
+        public String toString() {
+            return "Son{" +
+                    "name='" + name + '\'' +
+                    '}';
+        }
+    }
 }
+
+

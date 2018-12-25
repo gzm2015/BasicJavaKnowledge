@@ -1,8 +1,6 @@
-package proxy;
+package proxy.dynamicproxy;
 
 import org.junit.Test;
-
-import java.lang.reflect.Proxy;
 
 /**
  * @author LiuMengKe
@@ -11,6 +9,8 @@ import java.lang.reflect.Proxy;
  * Java实现原理主要有两类 基于接口或者基于子类
  * JDK动态代理 基于接口 aop使用的就是jdk动态代理
  * Cglib 基于子类
+ *
+ * 动态代理的意义在于不必为每个需要进行代理的类定义一个类并持有被代理类对象复写方法
  */
 public class ProxyTest {
     /**

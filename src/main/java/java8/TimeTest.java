@@ -15,13 +15,13 @@ import java.util.Date;
  * @author LiuMengKe
  * @create 2018-05-24-22:12
  */
-public class Jdk8TimeTest {
+public class TimeTest {
 
 
     Clock clock = Clock.systemDefaultZone();
 
     @Test
-    public void testClock() {
+    public void clock() {
         System.out.println(clock.getZone());
         System.out.println(Instant.now(clock).atZone(clock.getZone()));
         Clock clock1 = clock.withZone(ZoneId.of("Asia/Kolkata"));
@@ -32,7 +32,7 @@ public class Jdk8TimeTest {
     }
 
     @Test
-    public void testLocalTime() {
+    public void localTime() {
         LocalTime time = LocalTime.now();
         System.out.println(time);
         Clock clock1 = clock.withZone(ZoneId.of("Asia/Kolkata"));

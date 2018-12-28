@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class BigDecimalTest {
 
-
+    public  static boolean bg;
     /**
      * @author verbrennung
      * BigDecimal两种方式构建的区别
@@ -28,6 +28,12 @@ public class BigDecimalTest {
         System.out.println(a2.add(a));
         System.out.println(a2.add(b2));
         System.out.println(b2.multiply(a2));
+
+
+        System.out.println(1_000_000);
+        int n;
+        //System.out.println(n); java 不会对局部变量进行初始化 实例变量会在默认的无参构造函数的时候进行一次初始化
+        System.out.println(bg);
     }
 
 

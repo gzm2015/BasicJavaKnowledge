@@ -46,7 +46,7 @@ public class LifeCycle {
      * 构造函数初始化
      * Structure Initial
      *
-     * 可见静态属性静态方法块只初始化一次
+     * 可见静态属性静态方法块只初始化一次  因为静态变量常量和类信息保存在方法区中 为所有线程共有所以只加载一次
      *
      * 普通属性初始化
      * Field Initial

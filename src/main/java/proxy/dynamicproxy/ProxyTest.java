@@ -20,6 +20,7 @@ public class ProxyTest {
     public void testProxy() {
         UserService service =  new UserServiceImpl();
         MkProxyHandler<UserService> handler = new MkProxyHandler<UserService>(service);
+        System.out.println(handler.hashCode());
         //UserService proxyService = (UserService)Proxy.newProxyInstance(UserService.class.getClassLoader(),new Class[] { UserService.class },handler);
         //使用泛型改造一下 获取改造后的代理对象
         UserService proxyService = handler.getProxyTarget();

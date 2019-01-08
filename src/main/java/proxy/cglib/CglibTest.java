@@ -8,13 +8,13 @@ import net.sf.cglib.proxy.Enhancer;
  */
 public class CglibTest {
 
-    //一  enhancer.setSuperclass(RequestImpl.class);注入实际的类
+    //一  enhancer.setSuperclass(RequestServiceImpl.class);注入实际的类
     //二 clallback 里面要invokesupperclass
     public static void main(String[] args) {
         Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(RequestImpl.class);
+        enhancer.setSuperclass(RequestServiceImpl.class);
         enhancer.setCallback(new RequestCallBack());
-        RequestService service = (RequestService)enhancer.create();
+        RequestServiceImpl service = (RequestServiceImpl)enhancer.create();
         service.request();
     }
 

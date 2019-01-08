@@ -21,7 +21,7 @@ public class ReflectTest {
     public void reflect() {
         Reflect reflect = new Reflect("name");
         Class clazz = reflect.getClass();
-        //Field[] fields = clazz.getFields();//直接对内部类clazz getfields 没有结果
+        //Field[] fields = clazz.getFields();//直接对内部类clazz getfields 没有结果 因为getField只能拿到公共字段
         Field[] fields = clazz.getDeclaredFields();
         String name;
         for (Field field : fields) {
@@ -51,7 +51,7 @@ public class ReflectTest {
             } else {
                 try {
                     name = (String) field.get(reflect);
-                    System.out.println(name);
+                    Assert.assertEquals("name",name);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }

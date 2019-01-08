@@ -1,5 +1,7 @@
 package rpc;
 
+import java.net.InetSocketAddress;
+
 /**
  * @author LiuMengKe
  * @create 2018-11-06-17:17
@@ -7,22 +9,30 @@ package rpc;
  */
 public class SimpleRpcTest {
 
+    public static final String host = "127.0.0.1";
+    public static final int port = 9999;
+
     public static void main(String[] args) {
 
-        new Thread(new Runnable() {
+        Thread provider = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    RpcProvider.provider();
+                    RpcExporter.provider(host,port);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        }).start();
-
-        RpcCustomer<EchoService> rpcCustomer = new RpcCustomer<EchoService>();
-        EchoService echoService =rpcCustomer.getProxyTarget(EchoServiceImpl.class);
-        echoService.echo("test link ");
+        });
+        provider.start();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        RpcImporter<EchoService> rpcImporter = new RpcImporter();
+        EchoService echoService = rpcImporter.importer(EchoServiceImpl.class,new InetSocketAddress(host,port));
+        echoService.echo("Are you Ok----> ");
     }
 
 

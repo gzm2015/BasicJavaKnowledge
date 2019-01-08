@@ -16,6 +16,9 @@ import java.util.function.Supplier;
  * @create 2018-12-25-16:33
  *
  * java8 内置函数接口测试
+ * 函数式接口的要求是接口内部只能有一个抽象方法 但是可以有多个default method(就是有默认实现的方法）
+ * 比如Predicate 只有一个抽象方法 test
+ *
  */
 public class InnerInterfaceTest {
 

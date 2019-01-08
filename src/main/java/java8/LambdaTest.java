@@ -1,7 +1,15 @@
 package java8;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author LiuMengKe
@@ -46,12 +54,14 @@ public class LambdaTest {
 
 
     /**
-     * 测试函数式编程接口
-     *
+     * 测试方法引用::
+     * object::instance method 对象实例方法引用
+     * Class::static method 类静态方法引用
+     * Class::instance method 类实例方法引用 第一个参数会成为方法的目标 String compareToIgnoreCase String::compareToIgnoreCase 等价于 （x,y)->x.compareToIgnoreCase(y)
      */
     //::可以用于引用对象和静态方法
     @Test
-    public void function() {
+    public void methodRefrence() {
 
         Convert<String, Integer> converter = Integer::valueOf;
         Integer converted = converter.convert("123");
@@ -61,9 +71,34 @@ public class LambdaTest {
         Convert<String, String> converter2 = something::startsWith;
         String converted2 = converter2.convert("Java");
         System.out.println(converted2);    // "J"
+
+        Comparator<String> comparator = String::compareToIgnoreCase;
+        String[] arrays = {"C","a","b"};
+        Arrays.sort(arrays,comparator);
+        System.out.println(Arrays.toString(arrays));
     }
 
 
+    /**
+     * 测试构造器引用
+     * 会根据具体情况调用合适的构造器
+     */
+    @Test
+    public void classRefrenceTest() {
+        Arrays.asList("name1","name2","name3").stream().map(Person::new).forEach(System.out::println);
+    }
+
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @ToString
+    public class Person{
+        private String name;
+    }
+
+
+    //自定义函数式接口
     @FunctionalInterface
     public interface Convert<F,T>{
         public T convert(F f);

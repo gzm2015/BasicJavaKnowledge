@@ -7,8 +7,6 @@ package innerclass;
 public class MemberOutter {
 
 
-
-
     private class MemerInner{
 
     }

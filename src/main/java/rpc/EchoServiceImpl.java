@@ -7,7 +7,7 @@ package rpc;
 public class EchoServiceImpl implements EchoService{
     @Override
     public void echo(String param) {
-        param = param == null?"param is null":param+"   echo";
+        param = param == null?"param is null":param+"   I am Ok";
         System.out.println(param);
     }
 }

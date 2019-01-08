@@ -19,7 +19,8 @@ public class LocalOutter {
         new LocalInner().print();
     }
     private int age = 12;
-    public void Print(int x) {
+
+    public void print(int x) {
         class In {
             public void inPrint() {
                 System.out.println(x);
@@ -39,13 +40,19 @@ public class LocalOutter {
                 System.out.println(b);
             };
         }.start();
+
+        new Thread(()->{
+            System.out.println(a);
+            System.out.println(b);
+        }).start();
+
     }
 
     /*上面的内部类中不使用final修饰局部变量中的局部变量 在jdk8中正常 jdk7中就不行*/
     public static void main(String[] args) {
         LocalOutter outter = new LocalOutter();
         outter.get("111");
-        outter.Print(1);
+        outter.print(1);
         outter.test(10);
     }
 

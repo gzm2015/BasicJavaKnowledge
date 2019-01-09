@@ -8,7 +8,7 @@ import java.net.Socket;
 
 /**
  * 测试socket 双向通信
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-13:22
  */
 public class SocketClient {

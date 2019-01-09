@@ -2,7 +2,7 @@ package juc;
 
 /**
  * 中断线程测试
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-27-19:58
  * description: 阻塞的线程 被其他线程调用了 interrupt以后会抛出InterruptedException异常
  */

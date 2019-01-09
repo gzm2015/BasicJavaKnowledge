@@ -4,7 +4,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-31-9:20
  * CyclicBarrier回环测试 主要用法是 等待所有线程执行完毕以后 一起执行一下剩下的任务
  */

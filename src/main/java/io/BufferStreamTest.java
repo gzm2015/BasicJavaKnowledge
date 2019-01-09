@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.io.*;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-10:22
  */
 public class BufferStreamTest extends BasicIO {

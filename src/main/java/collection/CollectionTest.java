@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * 集合特性测试
  *
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2019-01-08-15:43
  */
 public class CollectionTest {

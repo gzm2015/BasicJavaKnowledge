@@ -3,7 +3,7 @@ package juc.lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-30-9:14
  */
 public class RentReadWriteLockTest {

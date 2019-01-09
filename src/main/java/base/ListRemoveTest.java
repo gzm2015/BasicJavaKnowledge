@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-30-16:06
  */
 public class ListRemoveTest {

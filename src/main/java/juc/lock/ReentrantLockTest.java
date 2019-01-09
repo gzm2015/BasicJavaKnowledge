@@ -3,7 +3,7 @@ package juc.lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-27-22:20
  *
  * ReentrantLock 实现lock接口

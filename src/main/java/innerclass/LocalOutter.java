@@ -1,7 +1,7 @@
 package innerclass;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-01-10:58
  * 局部内部类
  */

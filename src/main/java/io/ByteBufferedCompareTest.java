@@ -3,7 +3,7 @@ package io;
 import java.io.*;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-05-17:20
  * 对比字节流和buffer效率
  */

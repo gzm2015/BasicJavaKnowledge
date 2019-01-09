@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.concurrent.*;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-05-25-14:33
  * <p>
  * 不应该使用junit 来测试线程 测试方法结束以后测试方法中新开的线程还没运行完也看不到结果了

@@ -3,7 +3,7 @@ package juc;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-30-20:50
  * 阻塞队列
  */

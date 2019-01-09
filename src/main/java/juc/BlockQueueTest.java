@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 /**
  * 手动生成阻塞队列
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-30-21:15
  */
 public class BlockQueueTest {

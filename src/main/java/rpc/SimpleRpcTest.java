@@ -3,7 +3,7 @@ package rpc;
 import java.net.InetSocketAddress;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-17:17
  * 一个简单的rpc 框架实现 来自分布式原理与实践
  */

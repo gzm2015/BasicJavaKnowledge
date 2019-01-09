@@ -1,7 +1,7 @@
 package innerclass;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-01-11:16
  */
 public class StaticOutter {

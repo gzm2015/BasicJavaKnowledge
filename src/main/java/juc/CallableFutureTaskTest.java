@@ -3,7 +3,7 @@ package juc;
 import java.util.concurrent.*;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-31-20:36
  * <p>
  * FutureTask implements RunnableFuture<V> extends Runnable, Future<V>

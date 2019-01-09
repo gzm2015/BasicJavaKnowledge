@@ -1,7 +1,7 @@
 package proxy.cglib;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-12-14-16:28
  */
 public class RequestServiceImpl{

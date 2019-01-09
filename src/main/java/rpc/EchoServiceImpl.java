@@ -1,7 +1,7 @@
 package rpc;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-17:05
  */
 public class EchoServiceImpl implements EchoService{

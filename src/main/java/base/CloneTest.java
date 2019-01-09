@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * 对象拷贝测试
  * 浅拷贝深度拷贝
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-12-29-9:55
  */
 public class CloneTest {

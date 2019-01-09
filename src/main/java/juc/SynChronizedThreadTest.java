@@ -1,7 +1,7 @@
 package juc;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-27-20:52
  * description ： synchronized 关键字测试
  * synchronized 可以使用类锁(用在静态方法上和静态代码块）和对象锁用在(静态代码块和方法上)

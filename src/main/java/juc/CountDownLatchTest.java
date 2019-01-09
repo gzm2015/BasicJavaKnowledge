@@ -3,7 +3,7 @@ package juc;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-31-9:12
  * CountDownLatch 当一个计数器用
  * https://www.cnblogs.com/dolphin0520/category/602384.html

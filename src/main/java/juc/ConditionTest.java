@@ -6,7 +6,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-31-21:24
  *     Conditon中的await()对应Object的wait()；
  *

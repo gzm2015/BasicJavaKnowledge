@@ -1,7 +1,7 @@
 package generic;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2019-01-07-15:06
  */
 public class GenericExtends {

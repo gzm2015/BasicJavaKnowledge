@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * 泛型和反射
  *
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2019-01-08-8:48
  */
 public class GenericAndReflect {

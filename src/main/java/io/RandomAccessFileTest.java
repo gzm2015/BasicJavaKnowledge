@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-10:01
  *
  * RandomAccessFile 强大的地方在于可以直接操作指针

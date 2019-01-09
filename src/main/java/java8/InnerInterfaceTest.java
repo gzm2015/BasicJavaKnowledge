@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-12-25-16:33
  *
  * java8 内置函数接口测试

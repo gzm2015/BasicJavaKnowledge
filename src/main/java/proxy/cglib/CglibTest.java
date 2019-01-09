@@ -3,7 +3,7 @@ package proxy.cglib;
 import net.sf.cglib.proxy.Enhancer;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-12-14-16:27
  */
 public class CglibTest {

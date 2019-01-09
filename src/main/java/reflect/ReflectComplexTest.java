@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-12-28-16:42
  * <p>
  * 综合练习 自定义注解并标记

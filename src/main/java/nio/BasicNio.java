@@ -6,7 +6,7 @@ import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-09-14:27
  */
 public class BasicNio {

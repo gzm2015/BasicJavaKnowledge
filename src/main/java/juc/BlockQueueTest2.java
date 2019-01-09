@@ -3,7 +3,7 @@ package juc;
 import java.util.PriorityQueue;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-30-21:24
  * 阻塞队列联系
  * wait()、notify/notifyAll() 方法是Object的本地final方法，无法被重写。

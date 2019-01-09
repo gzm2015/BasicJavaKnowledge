@@ -3,7 +3,7 @@ package proxy.dynamicproxy;
 import org.junit.Test;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-14:52
  * 代理测试
  * Java实现原理主要有两类 基于接口或者基于子类

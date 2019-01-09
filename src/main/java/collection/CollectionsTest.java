@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * 工具类api
  *
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2019-01-09-14:25
  */
 public class CollectionsTest {

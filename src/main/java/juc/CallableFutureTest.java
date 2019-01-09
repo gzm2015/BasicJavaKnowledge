@@ -3,7 +3,7 @@ package juc;
 import java.util.concurrent.*;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-31-20:22
  * Future Callable 配合使用 Future 是一个接口
  * 一种是直接继承Thread，另外一种就是实现Runnable接口。

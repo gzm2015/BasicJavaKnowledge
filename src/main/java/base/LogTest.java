@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2019-01-07-10:13
  * 用system输出会到处都是也不好控制
  * 使用log的优点有

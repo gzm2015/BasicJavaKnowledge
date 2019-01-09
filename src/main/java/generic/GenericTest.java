@@ -10,7 +10,7 @@ import static javafx.scene.input.KeyCode.T;
 /**
  * 泛型测试
  *
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2019-01-07-10:55
  */
 public class GenericTest {

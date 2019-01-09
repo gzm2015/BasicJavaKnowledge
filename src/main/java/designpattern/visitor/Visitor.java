@@ -1,7 +1,7 @@
 package designpattern.visitor;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-16-14:11
  */
 public interface Visitor {

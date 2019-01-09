@@ -1,7 +1,7 @@
 package proxy.dynamicproxy;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-15:15
  */
 public class UserServiceImpl implements UserService {

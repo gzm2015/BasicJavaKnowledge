@@ -7,7 +7,7 @@ import java.io.*;
 
 /**
  * 对象流
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-06-9:30
  * 1.序列化反序列化双方需要使用同样的serialVersionUID serialVersionUID不同表示版本不同
  * 2.transient修饰的属性反序列化后没有值

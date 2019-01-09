@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 
 /**
  * 信号量测试
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-10-31-9:35
  * 八个工人五台机器
  */

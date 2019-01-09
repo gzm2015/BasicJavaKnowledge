@@ -11,7 +11,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
 /**
- * @author LiuMengKe
+ * @author gzm2015
  * @create 2018-11-09-15:00
  * 测试 nio buffer 感受nio基本用法
  */

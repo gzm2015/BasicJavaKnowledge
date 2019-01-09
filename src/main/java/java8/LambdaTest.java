@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -76,6 +77,8 @@ public class LambdaTest {
         String[] arrays = {"C","a","b"};
         Arrays.sort(arrays,comparator);
         System.out.println(Arrays.toString(arrays));
+
+        TreeSet<String> treeSet = new TreeSet<String>(String::compareToIgnoreCase);
     }
 
 

@@ -14,7 +14,7 @@ public class MapTest {
 
 
     //If the specified key is not already associated with a value (or is mapped to null) associates it with the given value and returns null, else returns the current value.
-    //如果以前键有值 则 返回 旧值 如果没有返回空
+    //如果以前键有值则返回旧值如果没有返回空
     /*源码解析*/
     /*
     *
@@ -29,6 +29,10 @@ public class MapTest {
         map.put("key", "value");
         String result = map.putIfAbsent("key", "value2");
         Assert.assertEquals("value",result);
+
+        map.putIfAbsent("key2","val2");
+        Assert.assertEquals("val2",map.get("key2"));
+
     }
 
 
@@ -49,10 +53,12 @@ public class MapTest {
     public void computeIfPresent() {
         Map<String, String> map = new HashMap();
         map.put("key", "value");
-        map.computeIfPresent("key", (x, y) -> x + "computeIfPresent有K-V新映射关系时构建" + y);
+        String newValue =  map.computeIfPresent("key", (x, y) -> x + "computeIfPresent有K-V新映射关系时构建" + y);
+        Assert.assertEquals("keycomputeIfPresent有K-V新映射关系时构建value",newValue);
         Assert.assertEquals("keycomputeIfPresent有K-V新映射关系时构建value",map.get("key"));
         //消除映射关系
-        map.computeIfPresent("key", (x, y) -> null);
+        String newValue2 =  map.computeIfPresent("key", (x, y) -> null);
+        Assert.assertNull(newValue2);
         Assert.assertNull(map.get("key"));
         //没有映射关系直接配置funtion失效
         map.computeIfPresent("bbb", (x, y) -> x + "computeIfPresent无K-V新映射关系时构建" + y);

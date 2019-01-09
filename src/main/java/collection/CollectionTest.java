@@ -1,9 +1,12 @@
 package collection;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -22,7 +25,7 @@ public class CollectionTest {
      * 也因此me米格子类可以有各自Iterator实现，比如set的iterator就没有add方法而linkedlist iterator就可以add 元素
      */
     @Test
-    public void BasicTest() {
+    public void basicTest() {
         //Arrays.asList 返回的是内部类中的ArrayList它本质上是一个视图对象含有访问里面数组的getset方法，
         // 但是所有改变底层数组大小的方法（iterator add) 会报错 Unsupported Operation
         //private final E[] a; 因为数组在内部类中final修饰是不可变的
@@ -48,7 +51,7 @@ public class CollectionTest {
 
 
         String v3 = iterator.next();
-        Assert.assertEquals("C",v3);
+        Assert.assertEquals("C", v3);
 
         //设置C变成D
         iterator.set("D");
@@ -56,7 +59,7 @@ public class CollectionTest {
     }
 
     @Test
-    public void ListIteratorTest() {
+    public void listIteratorTest() {
 
         List<String> list1 = new LinkedList<>();
         list1.add("A1");
@@ -73,7 +76,7 @@ public class CollectionTest {
         merge(list1, list2);
         remove(list2);
 
-        Assert.assertEquals(3,list2.size());
+        Assert.assertEquals(3, list2.size());
     }
 
 
@@ -81,23 +84,24 @@ public class CollectionTest {
     private void merge(List<String> list1, List<String> list2) {
         Iterator<String> iteB = list2.iterator();
         ListIterator<String> iteA = list1.listIterator();
-        while (iteB.hasNext()){
+        while (iteB.hasNext()) {
             String loop = iteB.next();
-            if(iteA.hasNext()){
+            if (iteA.hasNext()) {
                 iteA.next();
                 iteA.add(loop);
-            }else {
+            } else {
                 //注意这里不要 list1.add()
                 iteA.add(loop);
             }
         }
     }
+
     //隔列删除
     private void remove(List list2) {
         Iterator<String> iteB = list2.iterator();
-        while (iteB.hasNext()){
+        while (iteB.hasNext()) {
             iteB.next();
-            if(iteB.hasNext()){
+            if (iteB.hasNext()) {
                 iteB.next();
                 iteB.remove();
             }
@@ -108,14 +112,14 @@ public class CollectionTest {
     @Test
     public void hashTest() {
         //String 覆写了 equal 直接比较字符串 字符串内容相等hashcode相等
-        Assert.assertEquals("Hash".hashCode(),"Hash".hashCode());
-        Assert.assertEquals("Hash",new String ("Hash"));
-        Assert.assertEquals("Hash".hashCode(),new String ("Hash").hashCode());
+        Assert.assertEquals("Hash".hashCode(), "Hash".hashCode());
+        Assert.assertEquals("Hash", new String("Hash"));
+        Assert.assertEquals("Hash".hashCode(), new String("Hash").hashCode());
 
         //计算元素在bucket 中的位置
         //比如有128个桶取余决定了位置 位置被占散列冲突进去桶内链表 进行equal比较
         //java8以后将链表替换为平衡二叉树
-        System.out.println(76268%128);
+        System.out.println(76268 % 128);
     }
 
 
@@ -138,19 +142,19 @@ public class CollectionTest {
         /**
          * 传统方式都要进行判空操作 然后每次得到的再继续进行加一操作
          */
-        Map<String,Integer> map = new HashMap();
-        map.merge("work",1,Integer::sum);
-        Assert.assertEquals(Integer.valueOf(1),map.get("work"));
-        map.merge("work",1,Integer::sum);
+        Map<String, Integer> map = new HashMap<>();
+        map.merge("work", 1, Integer::sum);
+        Assert.assertEquals(Integer.valueOf(1), map.get("work"));
+        map.merge("work", 1, Integer::sum);
 
-        map.put("key2",2);
+        map.put("key2", 2);
         //keySet 返回一个实现了Set接口对象的类对象 通过他对原映射进行操作。这种集合称为视图
-        for (String key:map.keySet()){
+        for (String key : map.keySet()) {
             map.get(key);
         }
 
         //Set<Map.Entry<String,Integer>> keySet = map.entrySet();
-        for (Map.Entry<String,Integer> entry:map.entrySet()){
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey());
             System.out.println(entry.getValue());
         }
@@ -162,8 +166,8 @@ public class CollectionTest {
 
         EnumSet<WeekDay> always = EnumSet.allOf(WeekDay.class);
         EnumSet<WeekDay> never = EnumSet.noneOf(WeekDay.class);
-        EnumSet<WeekDay> workday = EnumSet.range(WeekDay.MONDAY,WeekDay.FRIDAY);
-        EnumSet<WeekDay> mwf = EnumSet.of(WeekDay.MONDAY,WeekDay.FRIDAY);
+        EnumSet<WeekDay> workday = EnumSet.range(WeekDay.MONDAY, WeekDay.FRIDAY);
+        EnumSet<WeekDay> mwf = EnumSet.of(WeekDay.MONDAY, WeekDay.FRIDAY);
 
     }
 
@@ -175,53 +179,100 @@ public class CollectionTest {
         // 但是所有改变底层数组大小的方法（iterator add) 会报错 Unsupported Operation
         //private final E[] a; 因为数组在内部类中final修饰是不可变的
         // ArrayList iterator.add的时候会出错
-        String[] array = {"A","B","C"};
+        String[] array = {"A", "B", "C"};
         List<String> list = Arrays.asList(array);
         ListIterator<String> iterator = list.listIterator();
         iterator.next();
-        try{
+        try {
             iterator.add("A1");
-        }catch(Exception e){
-            Assert.assertEquals(UnsupportedOperationException.class,e.getClass());
+        } catch (Exception e) {
+            Assert.assertEquals(UnsupportedOperationException.class, e.getClass());
         }
 
         //返回包含100个字符串的list每个都是default
-        List<String> list2 = Collections.nCopies(100,"default");
+        List<String> list2 = Collections.nCopies(100, "default");
         //返回不可变单元素集
-        Set<String>  singleSet = Collections.singleton("default");
+        Set<String> singleSet = Collections.singleton("default");
 
         List<String> list3 = new ArrayList<>(list2);
-        List<String> list2Sub = list3.subList(0,10);
+        List<String> list2Sub = list3.subList(0, 10);
         //不可对list2进行clear 原因同上
         //对子视图清空的同时 原集合收到影响
         list2Sub.clear();
-        Assert.assertEquals(90,list3.size());
+        Assert.assertEquals(90, list3.size());
 
         //为泛型泛型提混入其他类型提供调试支持
-        List<String> safeStrings = Collections.checkedList(list3,String.class);
+        List<String> safeStrings = Collections.checkedList(list3, String.class);
         //多线程支持
-        Map<String,Item> map = Collections.synchronizedMap(new HashMap<String, Item>());
+        Map<String, Item> map = Collections.synchronizedMap(new HashMap<String, Item>());
         //不能修改的集合
         List<String> unmodifyList = Collections.unmodifiableList(list3);
-        try{
-            unmodifyList.set(3,"A");
-        }catch(Exception e){
-            Assert.assertEquals(UnsupportedOperationException.class,e.getClass());
+        try {
+            unmodifyList.set(3, "A");
+        } catch (Exception e) {
+            Assert.assertEquals(UnsupportedOperationException.class, e.getClass());
         }
     }
 
 
+    @Test
+    public void collectionTest() {
+
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            list.add(i);
+        }
+        //混淆list中元素顺序
+        Collections.shuffle(list);
+        List<Integer> sub = list.subList(0, 10);
+        Collections.sort(sub);
+        System.out.println(sub);
+    }
 
 
+    /**
+     * 集合数组转换
+     */
+    @Test
+    public void conVertTest() {
+        String[] arrays = new String[10];
+        List<String> stringList = Arrays.asList(arrays);
+        String[] converted = (String[])stringList.toArray();
+    }
+
+    /**
+     * 优先级队列测试
+     * 采用了堆（可以自我调整的二叉树） add remove 操作会让最小元素移动到根
+     */
+    @Test
+    public void priorityQueueTest() {
+        PriorityQueue<LocalDate> priorityQueue = new PriorityQueue<>();
+        priorityQueue.add(LocalDate.of(1999,12,1));
+        priorityQueue.add(LocalDate.of(1996,1,1));
+        priorityQueue.add(LocalDate.of(1993,8,1));
+        priorityQueue.add(LocalDate.of(1998,9,1));
+        priorityQueue.add(LocalDate.of(1990,12,1));
+
+        for (LocalDate localDate : priorityQueue) {
+            System.out.println(localDate);
+        }
+        System.out.println("========================");
+        while (!priorityQueue.isEmpty()){
+            System.out.println(priorityQueue.remove());
+        }
+    }
 
 
-    public enum WeekDay{
-        MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY
+    public enum WeekDay {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
 
     @Data
-    public class Item implements Comparable<Item>{
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class Item implements Comparable<Item> {
         private String name;
+
         @Override
         public int compareTo(Item o) {
             return this.getName().compareTo(o.getName());

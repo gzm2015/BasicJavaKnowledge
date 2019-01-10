@@ -1,4 +1,4 @@
-package juc;
+package juc.old;
 
 import java.util.PriorityQueue;
 import java.util.concurrent.locks.Condition;
@@ -9,9 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author gzm2015
  * @create 2018-10-31-21:24
  *     Conditon中的await()对应Object的wait()；
- *
  * 　　 Condition中的signal()对应Object的notify()；
- *
  * 　　 Condition中的signalAll()对应Object的notifyAll()。
  */
 public class ConditionTest {

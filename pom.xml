@@ -56,6 +56,20 @@
             <version>3.2.10</version>
         </dependency>
 
+        <!--多线程单元测试支持 不太好用 原Thread很多方法用不了-->
+        <dependency>
+            <groupId>net.sourceforge.groboutils</groupId>
+            <artifactId>groboutils-core</artifactId>
+            <version>5</version>
+            <scope>system</scope>
+            <systemPath>C:/Users/Administrator/.m2/repository/net/sourceforge/groboutils/groboutils-core/5/GroboUtils-5-core.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.8</version>
+        </dependency>
     </dependencies>
 
 </project>

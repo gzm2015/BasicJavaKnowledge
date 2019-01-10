@@ -1,4 +1,4 @@
-package juc;
+package juc.old;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -15,7 +15,6 @@ public class ArrayBlockQueueTest {
      * 　　take方法用来从队首取元素，如果队列为空，则等待；
      * 　　offer方法用来向队尾存入元素，如果队列满，则等待一定的时间，当时间期限达到时，如果还没有插入成功，则返回false；否则返回true；
      * 　　poll方法用来从队首取元素，如果队列空，则等待一定的时间，当时间期限达到时，如果取到，则返回null；否则返回取得的元素；
-     *
      */
     private ArrayBlockingQueue blockingQueue = new ArrayBlockingQueue(10);
 
@@ -29,7 +28,7 @@ public class ArrayBlockQueueTest {
 
     }
 
-    class Customer extends  Thread{
+    class Customer extends Thread {
         @Override
         public void run() {
             System.out.println("customer 等待阻塞队列对象");
@@ -40,11 +39,11 @@ public class ArrayBlockQueueTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("从阻塞队列中取出对象"+object);
+            System.out.println("从阻塞队列中取出对象" + object);
         }
     }
 
-    class Producter extends  Thread{
+    class Producter extends Thread {
         @Override
         public void run() {
             try {

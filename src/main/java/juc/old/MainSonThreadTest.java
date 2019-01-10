@@ -1,4 +1,4 @@
-package juc;
+package juc.old;
 
 import org.junit.Test;
 
@@ -53,6 +53,7 @@ public class MainSonThreadTest {
         Thread thread1 = new Thread(new MyRunnable());
         thread1.setName("runnableThread");
         thread1.start();
+
         System.out.println(Thread.currentThread().getName()+"main thread stop");
 
     }

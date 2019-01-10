@@ -12,14 +12,14 @@ public class RentReadWriteLockTest {
 
     public static void main(String[] args) {
         RentReadWriteLockTest test = new RentReadWriteLockTest();
-        Thread t1 = new Thread(()->test.lock());
+        Thread t1 = new Thread(()->test.readlock());
         t1.start();
-        Thread t2 = new Thread(()->test.lock());
+        Thread t2 = new Thread(()->test.readlock());
         t2.start();
     }
 
 
-    private void lock() {
+    private void readlock() {
         rwl.readLock().lock();
         System.out.println(Thread.currentThread().getName()+"获取读锁");
         for (int i = 0; i < 10; i++) {

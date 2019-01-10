@@ -87,7 +87,7 @@ class RentrantTryLockThread extends Thread{
             try {
                 System.out.println(Thread.currentThread().getName()+"获得锁");
                 for (int i = 0; i < 10; i++) {
-                    Thread.currentThread().sleep(1000);
+                    Thread.sleep(1000);
                     System.out.println(Thread.currentThread().getName()+i);
                 }
             } catch (Exception e){
@@ -120,11 +120,11 @@ class RentrantInterruptThread extends Thread{
     public void run() {
 
         try {
-            lock.lockInterruptibly();
             System.out.println(Thread.currentThread().getName()+"获得锁");
+            lock.lockInterruptibly();
             for (int i = 0; i < 10; i++) {
                 lock.lockInterruptibly();
-                Thread.currentThread().sleep(10000);
+                Thread.sleep(10000);
                 System.out.println(Thread.currentThread().getName()+i);
             }
         }catch (InterruptedException  e){

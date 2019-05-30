@@ -43,7 +43,7 @@ public class BufferStreamTest extends BasicIO {
             outputStream = new BufferedOutputStream(new FileOutputStream(getSourcePath("source.txt")));
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < 550000; i++) {
-                String append = new String("fffffffffffffffffffffff");
+                String append = "fffffffffffffffffffffff";
                 builder.append(append);
             }
             outputStream.write(builder.toString().getBytes());

@@ -39,9 +39,7 @@ public class ReflectComplexTest {
                 }
             }
         }
-
         Assert.assertEquals(Sex.FEMAL.description, reflect.getSex());
-
     }
 
 

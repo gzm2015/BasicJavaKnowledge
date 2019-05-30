@@ -41,7 +41,7 @@ public class FileStreamTset extends BasicIO{
         OutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(getSourcePath("source.txt"));
-            String append = new String("appendffffffffffffffffffffffffffffff");
+            String append = "appendffffffffffffffffffffffffffffff";
             outputStream.write(append.getBytes());
             outputStream.flush();
         } catch (IOException e) {

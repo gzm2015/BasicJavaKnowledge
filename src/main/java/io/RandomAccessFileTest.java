@@ -10,6 +10,7 @@ import java.io.RandomAccessFile;
  * @create 2018-11-06-10:01
  *
  * RandomAccessFile 强大的地方在于可以直接操作指针
+ * 实际上RandomAccessFile是NIO的类
  *
  */
 public class RandomAccessFileTest extends BasicIO{

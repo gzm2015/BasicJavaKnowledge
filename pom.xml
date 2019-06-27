@@ -68,7 +68,7 @@
             <artifactId>groboutils-core</artifactId>
             <version>5</version>
             <scope>system</scope>
-            <systemPath>C:/Users/Administrator/.m2/repository/net/sourceforge/groboutils/groboutils-core/5/GroboUtils-5-core.jar</systemPath>
+            <systemPath>${basedir}/src/main/resources/GroboUtils-5-core.jar</systemPath>
         </dependency>
 
         <dependency>

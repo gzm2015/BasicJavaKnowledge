@@ -70,8 +70,6 @@ public class SimpleFileTransferTest {
 
         long timeNio = simpleFileTransferTest.transferFileWithNIO(sourse, nio);
         System.out.println(timeNio + "：NIO时间");
-
-
     }
 
 }

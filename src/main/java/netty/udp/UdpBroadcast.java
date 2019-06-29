@@ -7,7 +7,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.handler.codec.MessageToMessageEncoder;
-
 import java.net.InetSocketAddress;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class UdpBroadcast {
                 }
             });
             Channel channel =  future.channel();
-            channel.writeAndFlush("fff ok");
+            channel.writeAndFlush("发送udp数据测试");
             channel.closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();

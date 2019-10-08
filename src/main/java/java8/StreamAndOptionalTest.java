@@ -25,7 +25,7 @@ public class StreamAndOptionalTest {
      * 数据流操作要么是衔接操作，要么是终止操作。
      * 衔接操作返回数据流，所以我们可以把多个衔接操作不使用分号来链接到一起。
      * 终止操作无返回值，或者返回一个不是流的结果。在上面的例子中，filter、map和sorted都是衔接操作，而forEach是终止操作。
-     *
+     * <p>
      * 数据流可以从多种数据源创建，尤其是集合。List和Set支持新方法stream() 和 parallelStream()，
      */
     @Test
@@ -37,40 +37,12 @@ public class StreamAndOptionalTest {
             } else {
                 return false;
             }
-        }).map(x -> x.toUpperCase()).forEach(x -> System.out.println(x));
+        }).map(String::toUpperCase).forEach(System.out::println);
 
         System.out.println("=======================================");
 
         //并发
         myList.parallelStream().filter(x -> x.startsWith("c")).map(String::toUpperCase).forEach(System.out::println);
-
-    }
-
-    @Test
-    public void optional() {
-        //ifPresent If a value is present, invoke the specified consumer with the value, otherwise do nothing.
-        //A1
-        myList.stream().findFirst().map(String::toUpperCase).ifPresent(System.out::println);
-
-        //isPresent Return true if there is a value present, otherwise false.
-        boolean present = myList.stream().findFirst().map(String::toUpperCase).isPresent();
-        //true
-        System.out.println(present);
-
-        //Optional.of Returns an Optional with the specified present non-null value.
-        Optional optional = Optional.of("aaaa");
-        //aaa
-        System.out.println(optional.orElse("bbbb"));
-
-        //Optional.ofNullable Returns an Optional describing the specified value, if non-null, otherwise returns an empty Optional.
-        Optional optional2 = Optional.ofNullable(null);
-        //orElse Return the value if present, otherwise return other.
-        System.out.println(optional2.orElse("bbbb"));
-        System.out.println(optional2.orElseGet(
-                () -> {
-                    return "ffffffff";
-                }
-        ));
 
     }
 
@@ -195,32 +167,34 @@ public class StreamAndOptionalTest {
         Son sun1 = new Son("S1");
         Son sun2 = new Son("S2");
         Son sun3 = new Son("S3");
-        List<Son> sonList = Arrays.asList(sun1,sun2,sun3);
+        List<Son> sonList = Arrays.asList(sun1, sun2, sun3);
         p1.setSonList(sonList);
         p2.setSonList(sonList);
         p3.setSonList(sonList);
 
-        Stream<Person> personStrem = Stream.of(p1,p2,p3);
+        Stream<Person> personStrem = Stream.of(p1, p2, p3);
         //经典方式使用map获Son of Person forEach 里面每个都是一个List<Son>
         personStrem
-                .map(x->{
-                         System.out.println(x.getName());
-                         return Stream.of(x.getSonList());})
-                .forEach(x->x.forEach(System.out::println));
+                .map(x -> {
+                    System.out.println(x.getName());
+                    return Stream.of(x.getSonList());
+                })
+                .forEach(x -> x.forEach(System.out::println));
 
         //注意不要在map return 中使用Stream.of
-        Stream<Person> personStrem2 = Stream.of(p1,p2,p3);
+        Stream<Person> personStrem2 = Stream.of(p1, p2, p3);
         personStrem2
-                .map(x->{
+                .map(x -> {
                     System.out.println(x.getName());
-                    return x.getSonList().stream();})
+                    return x.getSonList().stream();
+                })
                 //Stream(List<Son>).forEach(List<Son> x.forEach(Son son)
-                  .forEach(x->x.forEach(y->System.out.println(y.getName())));
-                //.forEach(x->x.forEach(y->y.forEach(System.out::println)));
+                .forEach(x -> x.forEach(y -> System.out.println(y.getName())));
+        //.forEach(x->x.forEach(y->y.forEach(System.out::println)));
 
 
-        Stream<Person> personStrem3 = Stream.of(p1,p2,p3);
-        personStrem3.flatMap(x->x.getSonList().stream()).forEach(s->System.out.println(s.getName()));
+        Stream<Person> personStrem3 = Stream.of(p1, p2, p3);
+        personStrem3.flatMap(x -> x.getSonList().stream()).forEach(s -> System.out.println(s.getName()));
     }
 
 
@@ -281,7 +255,7 @@ public class StreamAndOptionalTest {
                 new Human("Pamela", 23),
                 new Human("David", 12));
 
-        Integer totalAge =  persons
+        Integer totalAge = persons
                 .parallelStream()
                 .reduce(0,//初始值
                         (sum, p) -> {
@@ -295,7 +269,7 @@ public class StreamAndOptionalTest {
                             return sum1 + sum2;
                         });//组合器
 
-        System.out.println("=============================================="+totalAge);
+        System.out.println("==============================================" + totalAge);
 
         Integer totalAge2 = persons
                 .stream()
@@ -310,7 +284,7 @@ public class StreamAndOptionalTest {
                                     sum1, sum2, Thread.currentThread().getName());
                             return sum1 + sum2;
                         });
-        System.out.println("=============================================="+totalAge2);
+        System.out.println("==============================================" + totalAge2);
     }
 
 
@@ -372,6 +346,7 @@ public class StreamAndOptionalTest {
     @Data
     public class Son {
         private String name;
+
         @Override
         public String toString() {
             return "Son{" +

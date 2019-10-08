@@ -1,17 +1,44 @@
 package java8;
 
 import lombok.Data;
-import org.apache.zookeeper.Op;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class OptionTest {
+
+    List<String> myList = Arrays.asList("a1", "a2", "b1", "c2", "c1");
+    @Test
+    public void optional() {
+        //ifPresent If a value is present, invoke the specified consumer with the value, otherwise do nothing.
+        //A1
+        myList.stream().findFirst().map(String::toUpperCase).ifPresent(System.out::println);
+
+        //isPresent Return true if there is a value present, otherwise false.
+        boolean present = myList.stream().findFirst().map(String::toUpperCase).isPresent();
+        //true
+        System.out.println(present);
+
+        //Optional.of Returns an Optional with the specified present non-null value.
+        Optional optional = Optional.of("aaaa");
+        //aaa
+        System.out.println(optional.orElse("bbbb"));
+
+        //Optional.ofNullable Returns an Optional describing the specified value, if non-null, otherwise returns an empty Optional.
+        Optional optional2 = Optional.ofNullable(null);
+        //orElse Return the value if present, otherwise return other.
+        System.out.println(optional2.orElse("bbbb"));
+        System.out.println(optional2.orElseGet(
+                () -> {
+                    return "ffffffff";
+                }
+        ));
+
+    }
+
+
 
     @Test
     public void testOptionList(){

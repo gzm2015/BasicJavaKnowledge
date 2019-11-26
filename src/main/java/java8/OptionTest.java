@@ -1,5 +1,7 @@
 package java8;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPObject;
 import lombok.Data;
 import org.junit.Assert;
 import org.junit.Test;
@@ -107,6 +109,15 @@ public class OptionTest {
     }
 
 
+    @Test
+    public void testOp(){
+
+        BasicOp op1 = new BasicOp();
+        String aaa = Optional.ofNullable(op1).map(BasicOp::getSon).map(BasicOp2::getName).orElseThrow(RuntimeException::new);
+        System.out.println(aaa);
+    }
+
+
 
     @Test
     public void test(){
@@ -117,4 +128,47 @@ public class OptionTest {
         System.out.println(date2);
 
     }
+
+
+    @Test
+    public void test2(){
+        JSONObject send = new JSONObject();
+        send.put("key", "key");
+        send.put("user", "OFE03548949FGRJF93J");
+        send.put("client", "PC");
+        JSONObject data = new JSONObject();
+        //data.put("token", "pf_admin|25d55ad283aa400af464c76d713c07ad");
+        send.put("data", data);
+
+        System.out.println(send.toJSONString());
+        String str = send.toJSONString();
+
+        Person op2 = new Person();
+        op2.setName("kk");
+        Map<String,String> tokenMap = new HashMap();
+        tokenMap.put("pf_admin|25d55ad283aa400af464c76d713c07ad", JSONObject.toJSONString(op2));
+
+
+        String str2 = null;
+
+        JSONObject object =  Optional.ofNullable(str).map(JSONObject::parseObject).map(body -> body.getJSONObject("data")).map(dataInLoop ->dataInLoop.getString("token")).map(tokenMap::get).map(JSONObject::parseObject).orElseThrow(RuntimeException::new);
+        System.out.println(object);
+
+    }
+
+
+    class  Person{
+        String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+
+
 }

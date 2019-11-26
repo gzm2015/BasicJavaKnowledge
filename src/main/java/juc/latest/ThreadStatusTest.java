@@ -93,8 +93,9 @@ public class ThreadStatusTest extends BasicThreadTest{
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(1000);
-                    t1.join();
+                    System.out.println("t2 begin running");
+                    Thread.sleep(3000);
+                    t1.join(); //等待t1结束以后继续执行
                     System.out.println("t2 is running");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -106,7 +107,7 @@ public class ThreadStatusTest extends BasicThreadTest{
         t1.start();
         t2.start();
 
-        Thread.sleep(100000);
+        Thread.sleep(8000);
         System.out.println("main over");
 
     }
@@ -153,8 +154,10 @@ public class ThreadStatusTest extends BasicThreadTest{
                 System.out.println(this.getName()+" 得到锁     进入睡眠 系统时间"+System.currentTimeMillis());
                 Thread.sleep(5000);
                 System.out.println(this.getName()+" 睡眠结束  调用wait方法并立刻释放锁  系统时间"+System.currentTimeMillis());
-                super.getLock().wait(5000);
+                super.getLock().notifyAll();
+                super.getLock().wait();
                 System.out.println(this.getName()+" wait 方法结束");
+                super.getLock().notifyAll();
             }
         }
     }

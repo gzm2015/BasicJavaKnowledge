@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.Test;
-
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * @author gzm2015
@@ -49,40 +50,32 @@ public class StreamAndOptionalTest {
 
     /*直接用 对象作为steam 的成员 和 基本数据类型的stream */
     @Test
-    public void testTypeStream() {
-
+    public void testTypeStream1() {
         //直接用对象作为stream
         Stream<Person> stream = Stream.of(new Person("郭源潮"), new Person("哈哈哈哈"), new Person("郭源潮"));
-
         //distince 必须复写 equal 和 hascode方法
         stream.distinct().filter(person -> person.getName().endsWith("郭源潮")).forEach(System.out::println);
+    }
 
-
+    @Test
+    public void testTypeStream2() {
         //IntStream
         IntStream intStream1 = IntStream.of(1, 2, 3, 4, 5);
         IntStream intStream2 = IntStream.range(6, 11);
         intStream1.forEach(System.out::print);
-
         System.out.println();
-        //public static IntStream stream(int[] array)
-        //149
-        Arrays.stream(new int[]{1, 2, 3}).map(x -> x * x).forEach(System.out::print);
-
-        System.out.println();
-
         //ifPresent后关闭stream
         intStream2.average().ifPresent(System.out::print);
 
-        System.out.println();
         //使用supplier 接口每次指向一个新的IntStream
         Supplier<IntStream> streamSupplier = () -> IntStream.of(1, 2, 3, 4, 5);
-
-        //5
         long count = streamSupplier.get().count();
         System.out.println(count);
-
-        //5
         streamSupplier.get().max().ifPresent(System.out::print);
+
+        //149
+        //public static IntStream stream(int[] array)
+        Arrays.stream(new int[]{1, 2, 3}).map(x -> x * x).forEach(System.out::print);
     }
 
 
@@ -92,7 +85,7 @@ public class StreamAndOptionalTest {
         Supplier<Stream<Person>> streamSupplier = () -> Stream.of(new Person("郭源潮"), new Person("哈哈哈哈"), new Person("郭源潮"));
         Stream<Person> stream = Stream.of(new Person("郭源潮"), new Person("哈哈哈哈"), new Person("郭源潮"));
 
-        List<Person> personList = streamSupplier.get().filter(x -> x.getName().startsWith("郭")).collect(Collectors.toList());
+        List<Person> personList = streamSupplier.get().filter(x -> x.getName().startsWith("郭")).collect(toList());
         //[Person{name='郭源潮'}, Person{name='郭源潮'}]
         System.out.println(personList);
 
@@ -102,7 +95,9 @@ public class StreamAndOptionalTest {
         //{哈哈哈哈=[Person{name='哈哈哈哈'}], 郭源潮=[Person{name='郭源潮'}, Person{name='郭源潮'}]}
         System.out.println(map);
 
+        //AAAA郭源潮|哈哈哈哈|郭源潮BBBBB
         String result = streamSupplier.get().map(person -> person.getName()).collect(Collectors.joining("|", "AAAA", "BBBBB"));
+        //郭源潮|哈哈哈哈|郭源潮
         String result2 = streamSupplier.get().map(person -> person.getName()).collect(Collectors.joining("|"));
         System.out.println(result);
         System.out.println(result2);
@@ -113,6 +108,12 @@ public class StreamAndOptionalTest {
          * 我们希望将流中的所有人转换为一个字符串，包含所有大写的名称，并以|分割。为了完成它，我们通过Collector.of()创建了一个新的收集器。
          * 我们需要传递一个收集器的四个组成部分：供应器、累加器、组合器和终止器。
          */
+
+        /*of(Supplier<A> supplier,
+                BiConsumer<A, T> accumulator,
+                BinaryOperator<A> combiner,
+                Function<A, R> finisher,
+                Collector.Characteristics... characteristics)*/
         Collector<Person, StringJoiner, String> personNameCollector =
                 Collector.of(
                         () -> {
@@ -142,6 +143,30 @@ public class StreamAndOptionalTest {
     }
 
 
+    /**
+     * 传递给map方法的lambda为每个单词生成了一个String[](String列表)。因此，map返回的流实际上是Stream<String[]> 类型的
+     * 你真正想要的是用Stream<String>来表示一个字符串。
+     */
+    @Test
+    public void testflap() {
+        String[] words = new String[]{"Hello", "World"};
+        List<String[]> a = Arrays.stream(words).map(word -> word.split("")).distinct().collect(toList());
+        a.forEach(System.out::print);
+        //得到的是流的列表
+        System.out.println(Arrays.stream(words).map(word -> word.split("")).map(Arrays::stream).distinct().collect(toList()));
+    }
+
+    /**
+     * 使用flatMap方法的效果是，各个数组并不是分别映射一个流，而是映射成流的内容，所有使用map(Array::stream)时生成的单个流被合并起来，即扁平化为一个流。
+     */
+    @Test
+    public void testflap2() {
+        String[] words = new String[]{"Hello", "World"};
+        List<String> a = Arrays.stream(words).map(word -> word.split("")).flatMap(Arrays::stream).distinct().collect(toList());
+        a.forEach(System.out::print);
+    }
+
+
     @Test
     public void flapMap() {
         //flatmap <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
@@ -149,8 +174,8 @@ public class StreamAndOptionalTest {
         Person p1 = new Person("郭源潮");
         Person p2 = new Person("哈哈哈哈");
         Person p3 = new Person("郭源潮2");
-        Son sun3 = new Son("sun");
-        p3.setSon(sun3);
+        Son sun3 = new Son("sun");p3.setSon(sun3);
+
         Supplier<Stream<Person>> streamSupplier = () -> Stream.of(p1, p2, p3);
         streamSupplier.get().map(x -> Stream.of(x.getSon())).forEach(x -> x.forEach(System.out::println));
         System.out.println("============================");

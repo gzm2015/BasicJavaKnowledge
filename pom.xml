@@ -104,6 +104,21 @@
             <artifactId>testng</artifactId>
             <version>6.9.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.xingePush</groupId>
+            <artifactId>xinge</artifactId>
+            <version>1.2.2-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>xingePush</id>
+            <url>https://raw.githubusercontent.com/xingePush/maven-repository/snapshot/</url>
+        </repository>
+    </repositories>
+
 
 </project>

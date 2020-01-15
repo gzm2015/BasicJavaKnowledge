@@ -16,12 +16,9 @@ public class SocketClient {
     public static void main(String[] args) {
         String host = "127.0.0.1";
         int port = 55533;
-        Socket socket = null;
-        OutputStream outputStream = null;
         InputStream inputStream = null;
-        try {
-            socket = new Socket(host,port);
-            outputStream = socket.getOutputStream();
+        try(    Socket socket = new Socket(host,port);
+                OutputStream outputStream = socket.getOutputStream()) {
             outputStream.write("客户端发动消息".getBytes("UTF-8"));
             //不应该使用关闭流的方式发送消息
             socket.shutdownOutput();
@@ -37,9 +34,7 @@ public class SocketClient {
             e.printStackTrace();
         }finally {
             try {
-                outputStream.close();
                 inputStream.close();
-                socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
  */
 public class CollectionsTest {
 
+
+
     /**
      * 对于随机访问的可以使用二分查找
      */

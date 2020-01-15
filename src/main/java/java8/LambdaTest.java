@@ -23,6 +23,12 @@ import java.util.stream.Collectors;
 public class LambdaTest {
 
 
+    /**
+     * java8 开始支持lambda
+     * java8中接口方法可以有默认实现 有默认实现的接口方法是非抽象方法 没有默认实现的为抽象方法
+     * 函数式接口中的抽象方法只能有一个 非抽象方法不限制数量 使用 @FunctionalInterface 标记
+     */
+
     private int lambdavariable =1;
     private static int lambdavariable2 =2;
 

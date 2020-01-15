@@ -26,6 +26,7 @@ public class BasicZkTest {
             client.start();// 连接
             // 获取子节点，顺便监控子节点
             List<String> children = client.getChildren().usingWatcher(new CuratorWatcher() {
+                @Override
                 public void process(WatchedEvent event) throws Exception
                 {
                     System.out.println("监控： " + event);

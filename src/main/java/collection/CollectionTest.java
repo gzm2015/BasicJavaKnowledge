@@ -17,7 +17,6 @@ import java.util.*;
  */
 public class CollectionTest {
 
-
     /**
      * 1.集合的基础是Collection<T> extends Iterable
      * Iterator<T> iterator();

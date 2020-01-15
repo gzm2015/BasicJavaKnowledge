@@ -75,6 +75,20 @@ public class GenericTest {
         //Pair 类 静态变量 public static T t;  public static  <T> invoke(T t);
 
         //6.注意参数擦除后的冲突问题 类或者类型变量不能同时成为两个接口类型的子类 而这两个接口实际上是同一个接口
+        /**
+         * 要想支持擦除的转换 ， 就需要强行限制一个类或类
+         * 型变量不能同时成为两个接口类型的子类
+         * ， 而这两个接口是同一接口的不同参数化
+         * Manager 会实现 Comparable < Employee > 和 Comparable < Manager > , 这是同一接口 的不同
+         * 参数化
+         * 这一限制与类型擦除的关系并不十分明确
+         * 。 毕竟 ， 下列非泛型版本是合法的 。
+         * class Employee implements Comparable { . . . }
+         * class Manager extends Employee implements Comparable { . . . }
+         * 其原因非常微妙
+         * ， 有可能与合成的桥方法产生冲突 。 实现了 C 0 mpamble < X > 的类可以获得一
+         * 个桥方法 ：
+         */
        /* class Employee implements Comparable<Employee>;
         class Manager extends Employee implements Comparable<Manager>;*/
     }

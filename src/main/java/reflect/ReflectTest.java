@@ -23,6 +23,8 @@ public class ReflectTest {
         Class clazz = reflect.getClass();
         //Field[] fields = clazz.getFields();//直接对内部类clazz getfields 没有结果 因为getField只能拿到公共字段
         Field[] fields = clazz.getDeclaredFields();
+        Field[] fields2 = clazz.getFields();
+        System.out.println(fields2.length);
         String name;
         for (Field field : fields) {
             field.setAccessible(true);

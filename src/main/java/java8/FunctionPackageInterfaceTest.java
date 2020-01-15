@@ -20,7 +20,7 @@ import java.util.function.Supplier;
  * 比如Predicate 只有一个抽象方法 test
  *
  */
-public class InnerInterfaceTest {
+public class FunctionPackageInterfaceTest {
 
     /*Predicate是一个布尔类型的函数，该函数只有一个输入参数。Predicate接口包含了多种默认方法，用于处理复杂的逻辑动词（and, or，negate）*/
     @Test

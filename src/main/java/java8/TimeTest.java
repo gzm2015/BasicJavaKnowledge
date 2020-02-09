@@ -2,10 +2,7 @@ package java8;
 
 import org.junit.Test;
 
-import java.time.Clock;
-import java.time.Instant;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -48,6 +45,11 @@ public class TimeTest {
 
         LocalTime late = LocalTime.of(23, 59, 59);
         System.out.println(late);       // 23:59:59
+
+        LocalTime tomo = late.plusHours(1);
+
+
+        System.out.println(tomo);
     }
 
 }

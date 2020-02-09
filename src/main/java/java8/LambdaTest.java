@@ -1,9 +1,6 @@
 package java8;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -23,12 +20,17 @@ import java.util.stream.Collectors;
 public class LambdaTest {
 
 
+
     /**
+     * 因为java中没有指针 所以没办法直接传递方法
+     * lambda相当于直接传递了代码块作为实现
+     */
+    /**
+     * 函数式接口：
      * java8 开始支持lambda
      * java8中接口方法可以有默认实现 有默认实现的接口方法是非抽象方法 没有默认实现的为抽象方法
      * 函数式接口中的抽象方法只能有一个 非抽象方法不限制数量 使用 @FunctionalInterface 标记
      */
-
     private int lambdavariable =1;
     private static int lambdavariable2 =2;
 
@@ -42,6 +44,10 @@ public class LambdaTest {
             }
         });
         lambdaInterfaceImpl.testLambda("    lambda  ");
+
+
+        LambdaInterfaceImpl lambdaInterfaceImpl3 =  new LambdaInterfaceImpl(System.out::println);
+
 
         final int localvariable = 5;
         int localvariable2 = 5;
@@ -57,15 +63,17 @@ public class LambdaTest {
             System.out.println("打印成员变量  "+lambdavariable);
             System.out.println("打印静态变量  "+lambdavariable2);
         });
+
         //localvariable2 = 6;
         lambdaInterfaceImpl2.testLambda("lambda  ");
     }
 
 
     /**
+     * 方法引用：lambda 中可以使用已有方法时可以简化 表达式
      * 测试方法引用::
-     * object::instance method 对象实例方法引用
-     * Class::static method 类静态方法引用
+     * object::instance method 对象实例方法引用 相当于 object -> object.instancemethod
+     * Class::static method 类静态方法引用  object -> Class.staticMethod (object)
      * Class::instance method 类实例方法引用 第一个参数会成为方法的目标 String compareToIgnoreCase String::compareToIgnoreCase 等价于 （x,y)->x.compareToIgnoreCase(y)
      */
     //::可以用于引用对象和静态方法
@@ -195,14 +203,14 @@ public class LambdaTest {
     }
 
 
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public class Employee {
         private String name;
         private int age;
         private double salary;
-
-        public Employee() {
-
-        }
 
         public Employee(String name) {
             this.name = name;
@@ -212,33 +220,6 @@ public class LambdaTest {
             this.name = name;
             this.age = age;
         }
-
-        public Employee(String name, int age, double salary) {
-            super();
-            this.name = name;
-            this.age = age;
-            this.salary = salary;
-        }
-
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public int getAge() {
-            return age;
-        }
-        public void setAge(int age) {
-            this.age = age;
-        }
-        public double getSalary() {
-            return salary;
-        }
-        public void setSalary(double salary) {
-            this.salary = salary;
-        }
-
     }
 
 

@@ -26,7 +26,7 @@ public class CollectionTest {
     @Test
     public void basicTest() {
         //Arrays.asList 返回的是内部类中的ArrayList它本质上是一个视图对象含有访问里面数组的getset方法，
-        // 但是所有改变底层数组大小的方法（iterator add) 会报错 Unsupported Operation
+        // 但是所有改变底层数组大小的方法（iterator add remove) 会报错 Unsupported Operation
         //private final E[] a; 因为数组在内部类中final修饰是不可变的
         // ArrayList iterator.add的时候会出错
         List<String> list1 = new LinkedList<>();

@@ -24,7 +24,7 @@ public class ThreadTest {
 
     @Test
     public void start() {
-        Runnable thread1 = new Runnable() {
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
                /* try {
@@ -35,7 +35,7 @@ public class ThreadTest {
                 System.out.println("传统方式启动线程");
             }
         };
-        Thread clasicThread = new Thread(thread1);
+        Thread clasicThread = new Thread(runnable);
         clasicThread.start();
 
         /*try {

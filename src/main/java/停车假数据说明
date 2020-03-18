@@ -1,0 +1,8 @@
+1.主要是对 `onstreet_parking`.`porder` `onstreet_parking`.`porder_record` 两张表进行操作
+porder_record 依赖 porder
+2.生成
+ porder表 字段
+ id 车牌号（porder_license） 创建时间（porder_apply_time，createTime，porder_geomagnetism_time）结束时间 update_time
+ porder_record 字段
+ recordId , update_time, porder_license,porderId
+3.porder_record 是记录停车费用支付情况的 由于不了解其中逻辑，随便生成可能影响其他模块统计，只能将生成的所有porder_record全部记录为未支付状态

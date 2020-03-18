@@ -13,7 +13,7 @@ public class ThreadStatusTest extends BasicThreadTest{
     /**
      * 1.主动等待
      *  wait() 释放锁 回到runnable状态
-     *  join()内部调用的是wait() 释放锁
+     *  join()内部调用的是wait() 释放锁  当前线程进入watting状态 等待isAlive()跳出while(isAlive())
      *
      * 2.主动睡眠
      *  sleep(seconds)  不释放锁 回到runnable状态
@@ -115,7 +115,9 @@ public class ThreadStatusTest extends BasicThreadTest{
 
 
 
-
+    /**
+     * yield()不会释放锁标志。
+     */
     public class YieldThread extends AbstractThread{
 
         public YieldThread(String name, Object lock) {
@@ -124,16 +126,12 @@ public class ThreadStatusTest extends BasicThreadTest{
 
         @Override
         public void crorun() throws Throwable {
-            System.out.println(this.getName()+" 线程开始执行");
-            synchronized (super.getLock()){
-                System.out.println(this.getName()+" 得到锁     进入睡眠 系统时间"+System.currentTimeMillis());
-                Thread.sleep(5000);
-                System.out.println(this.getName()+" 睡眠结束  调用yield方法并让步与其他线程回到runnalbe状态  系统时间"+System.currentTimeMillis());
-                Thread.yield();
-                System.out.println(this.getName()+" yield方法结束  继续睡眠后调用 yield方法"+System.currentTimeMillis());
-                Thread.sleep(5000);
-                Thread.yield();
-                System.out.println(this.getName()+" 离开线程");
+            for (int i = 0; i < 30; i++) {
+                synchronized (super.getLock()){
+                    System.out.println(super.getName()+":"+i);
+                    System.out.println(super.getName()+" yield");
+                    Thread.yield();
+                }
             }
         }
     }

@@ -10,35 +10,48 @@ public class SynChronizedThreadTest {
     //测试synchronized修饰方法使用对象锁
     //t1 t2使用同一把锁
     /*public static void main(String[] args) {
-        SynChronizedObjectLock synChronizedObjectLock = new SynChronizedObjectLock();
-        SynChronizedObjThread t1 = new SynChronizedObjThread("t1", synChronizedObjectLock);
+        MethodSyncObj synChronizedObjectLock = new MethodSyncObj();
+        MethodThread t1 = new MethodThread("t1", synChronizedObjectLock);
         t1.start();
-        SynChronizedObjThread t2 = new SynChronizedObjThread("t2", synChronizedObjectLock);
+        MethodThread t2 = new MethodThread("t2", synChronizedObjectLock);
         t2.start();
     }*/
 
-    public static void main(String[] args) {
-        SynChronizedObjectLock2 synChronizedObjectLock2 = new SynChronizedObjectLock2();
-        SynChronizedObjThread2 t1 = new SynChronizedObjThread2("t1", synChronizedObjectLock2);
+    /**
+     * 测试sync代码块使用同一个锁
+     */
+    /*public static void main(String[] args) {
+        BlockSyncObj blockSyncObj = new BlockSyncObj();
+        BlockThread t1 = new BlockThread("t1", blockSyncObj);
         t1.start();
-        SynChronizedObjThread2 t2 = new SynChronizedObjThread2("t2", synChronizedObjectLock2);
+        BlockThread t2 = new BlockThread("t2", blockSyncObj);
         t2.start();
-    }
+    }*/
 
     //测试synchronized修饰方法使用对象锁
     //t1 t2 两个线程 用两个对象 但是使用的是同一把锁
     /*public static void main(String[] args) {
-        SynChronizedClassLock synChronizedClassLock = new SynChronizedClassLock();
-        SynChronizedClassLock synChronizedClassLock2 = new SynChronizedClassLock();
-        SynChronizedClzThread t1 = new SynChronizedClzThread("t1", synChronizedClassLock);
+        StaticMethodSyncObj staticMethodSyncObj = new StaticMethodSyncObj();
+        StaticMethodSyncObj staticMethodSyncObj2 = new StaticMethodSyncObj();
+        StaticMethodThread t1 = new StaticMethodThread("t1", staticMethodSyncObj);
         t1.start();
-        SynChronizedClzThread t2 = new SynChronizedClzThread("t2", synChronizedClassLock2);
+        StaticMethodThread t2 = new StaticMethodThread("t2", staticMethodSyncObj2);
         t2.start();
     }*/
+
+
+    public static void main(String[] args) {
+        ClassSyncObj staticMethodSyncObj = new ClassSyncObj();
+        ClassSyncObj staticMethodSyncObj2 = new ClassSyncObj();
+        ClassThread t1 = new ClassThread("t1", staticMethodSyncObj);
+        t1.start();
+        ClassThread t2 = new ClassThread("t2", staticMethodSyncObj2);
+        t2.start();
+    }
 }
 
 //synchronized 修饰方法使用对象锁
-class SynChronizedObjectLock {
+class MethodSyncObj {
 
     public synchronized void print(){
         for (int i = 0; i < 50; i++) {
@@ -46,9 +59,9 @@ class SynChronizedObjectLock {
         }
     }
 }
-class SynChronizedObjThread extends Thread{
-    private SynChronizedObjectLock lock;
-    public SynChronizedObjThread(String name, SynChronizedObjectLock lock) {
+class MethodThread extends Thread{
+    private MethodSyncObj lock;
+    public MethodThread(String name, MethodSyncObj lock) {
         super(name);
         this.lock = lock;
     }
@@ -60,7 +73,7 @@ class SynChronizedObjThread extends Thread{
 
 
 //使用代码块上加锁
-class SynChronizedObjectLock2 {
+class BlockSyncObj {
 
     public  void print(){
         for (int i = 0; i < 50; i++) {
@@ -68,9 +81,9 @@ class SynChronizedObjectLock2 {
         }
     }
 }
-class SynChronizedObjThread2 extends Thread{
-    private SynChronizedObjectLock2 lock;
-    public SynChronizedObjThread2(String name, SynChronizedObjectLock2 lock) {
+class BlockThread extends Thread{
+    private BlockSyncObj lock;
+    public BlockThread(String name, BlockSyncObj lock) {
         super(name);
         this.lock = lock;
     }
@@ -85,7 +98,7 @@ class SynChronizedObjThread2 extends Thread{
 
 
 //synchronized 修饰静态方法使用类锁
-class SynChronizedClassLock {
+class StaticMethodSyncObj {
     public static synchronized void print(){
         for (int i = 0; i < 50; i++) {
             System.out.println(Thread.currentThread().getName()+"   running     "+i+"       times");
@@ -93,15 +106,39 @@ class SynChronizedClassLock {
     }
 }
 
-class SynChronizedClzThread extends Thread{
+class StaticMethodThread extends Thread{
 
-    private  SynChronizedClassLock lock;
-    public SynChronizedClzThread(String name, SynChronizedClassLock lock) {
+    private StaticMethodSyncObj lock;
+    public StaticMethodThread(String name, StaticMethodSyncObj lock) {
         super(name);
         this.lock = lock;
     }
     @Override
     public void run() {
         lock.print();
+    }
+}
+
+class ClassSyncObj {
+    public  void print(){
+        for (int i = 0; i < 50; i++) {
+            System.out.println(Thread.currentThread().getName()+"   running     "+i+"       times");
+        }
+    }
+}
+
+class ClassThread extends Thread{
+
+    private ClassSyncObj lock;
+
+    public ClassThread(String name, ClassSyncObj lock) {
+        super(name);
+        this.lock = lock;
+    }
+    @Override
+    public void run() {
+        synchronized (ClassThread.class){
+            lock.print();
+        }
     }
 }

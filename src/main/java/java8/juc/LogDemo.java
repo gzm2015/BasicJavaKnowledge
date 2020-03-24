@@ -4,6 +4,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/*
+*
+* 体会惰性求值的作用
+* */
 public class LogDemo {
 
   private static final Logger logger = Logger

@@ -10,18 +10,18 @@ public class MainSonThreadTest {
 
     /**
      * 正常执行
-     * mainmain thread stop
-     * myThread2   my thread run
-     * myThread   my thread run
-     * myThread   my thread stop
-     * myThread2   my thread stop
+     * mainmain threadInPark stop
+     * myThread2   my threadInPark run
+     * myThread   my threadInPark run
+     * myThread   my threadInPark stop
+     * myThread2   my threadInPark stop
      */
     /*public static void main(String[] args) {
-        Thread thread = new SonThread("myThread");
-        thread.start();
-        Thread thread2 = new SonThread("myThread2");
-        thread2.start();
-        System.out.println(Thread.currentThread().getName()+"main thread stop");
+        Thread threadInPark = new SonThread("myThread");
+        threadInPark.start();
+        Thread threadInPark2 = new SonThread("myThread2");
+        threadInPark2.start();
+        System.out.println(Thread.currentThread().getName()+"main threadInPark stop");
     }*/
 
 
@@ -34,11 +34,11 @@ public class MainSonThreadTest {
         thread1.setName("Thread1===");
         thread1.start();
 
-        Thread thread2 = new Thread(new MyRunnable());
-        thread2.setName("Thread2===");
-        thread2.start();
+        Thread threadInPark2 = new Thread(new MyRunnable());
+        threadInPark2.setName("Thread2===");
+        threadInPark2.start();
 
-        System.out.println(Thread.currentThread().getName()+"main thread stop");
+        System.out.println(Thread.currentThread().getName()+"main threadInPark stop");
     }*/
 
     /**
@@ -54,7 +54,7 @@ public class MainSonThreadTest {
         thread1.setName("runnableThread");
         thread1.start();
 
-        System.out.println(Thread.currentThread().getName()+"main thread stop");
+        System.out.println(Thread.currentThread().getName()+"main threadInPark stop");
 
     }
 
@@ -68,7 +68,7 @@ public class MainSonThreadTest {
         Thread thread1 = new Thread(new MyRunnable());
         thread1.setName("runnableThread");
         thread1.start();
-        System.out.println(Thread.currentThread().getName()+"main thread stop");
+        System.out.println(Thread.currentThread().getName()+"main threadInPark stop");
     }
 }
 
@@ -80,9 +80,9 @@ class SonThread extends Thread{
     public void run() {
         try {
             super.run();
-            System.out.println(Thread.currentThread().getName()+"   my thread run");
+            System.out.println(Thread.currentThread().getName()+"   my threadInPark run");
             Thread.sleep(1000);
-            System.out.println(Thread.currentThread().getName()+"   my thread stop");
+            System.out.println(Thread.currentThread().getName()+"   my threadInPark stop");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -56,9 +56,9 @@ hinted_handoff_enabled: true
 # created until it has been seen alive and gone down again.
 max_hint_window_in_ms: 10800000 # 3 hours
 
-# Maximum throttle in KBs per second, per delivery thread.  This will be
+# Maximum throttle in KBs per second, per delivery threadInPark.  This will be
 # reduced proportionally to the number of nodes in the cluster.  (If there
-# are two nodes in the cluster, each delivery thread will use the maximum
+# are two nodes in the cluster, each delivery threadInPark will use the maximum
 # rate; if there are three, each will throttle to half of the maximum,
 # since we expect two nodes to be delivering hints simultaneously.)
 hinted_handoff_throttle_in_kb: 1024
@@ -522,7 +522,7 @@ memtable_allocation_type: heap_buffers
 # as well as the total number of memtables that can be flushed concurrently.
 # These are generally a combination of compute and IO bound.
 #
-# Memtable flushing is more CPU efficient than memtable ingest and a single thread
+# Memtable flushing is more CPU efficient than memtable ingest and a single threadInPark
 # can keep up with the ingest rate of a whole server on a single fast disk
 # until it temporarily becomes IO bound under contention typically with compaction.
 # At that point you need multiple flush threads. At some point in the future
@@ -535,7 +535,7 @@ memtable_allocation_type: heap_buffers
 # memtable_flush_writers defaults to two for a single data directory.
 # This means that two  memtables can be flushed concurrently to the single data directory.
 # If you have multiple data directories the default is one memtable flushing at a time
-# but the flush will use a thread per data directory so you will get two or more writers.
+# but the flush will use a threadInPark per data directory so you will get two or more writers.
 #
 # Two is generally enough to flush on a fast disk [array] mounted as a single data directory.
 # Adding more flush writers will result in smaller more frequent flushes that introduce more
@@ -709,16 +709,16 @@ rpc_keepalive: true
 # Cassandra provides two out-of-the-box options for the RPC Server:
 #
 # sync
-#   One thread per thrift connection. For a very large number of clients, memory
+#   One threadInPark per thrift connection. For a very large number of clients, memory
 #   will be your limiting factor. On a 64 bit JVM, 180KB is the minimum stack size
-#   per thread, and that will correspond to your use of virtual memory (but physical memory
+#   per threadInPark, and that will correspond to your use of virtual memory (but physical memory
 #   may be limited depending on use of stack space).
 #
 # hsha
 #   Stands for "half synchronous, half asynchronous." All thrift clients are handled
 #   asynchronously using a small number of threads that does not vary with the amount
 #   of thrift clients (and thus scales well to many clients). The rpc requests are still
-#   synchronous (one thread per active request). If hsha is selected then it is essential
+#   synchronous (one threadInPark per active request). If hsha is selected then it is essential
 #   that rpc_max_threads is changed from the default value of unlimited.
 #
 # The default is sync because on Windows hsha is about 30% slower.  On Linux,
@@ -731,7 +731,7 @@ rpc_server_type: sync
 # Uncomment rpc_min|max_thread to set request pool size limits.
 #
 # Regardless of your choice of RPC server (see above), the number of maximum requests in the
-# RPC thread pool dictates how many concurrent requests are possible (but if you are using the sync
+# RPC threadInPark pool dictates how many concurrent requests are possible (but if you are using the sync
 # RPC server, it also dictates the number of clients that can be connected at all).
 #
 # The default is unlimited and thus provides no protection against clients overwhelming the server. You are
@@ -1217,7 +1217,7 @@ back_pressure_strategy:
 # doesn't benefit from coalescing messages, it's that the number of packets a bare metal network interface can process
 # is sufficient for many applications such that no load starvation is experienced even without coalescing.
 # There are other benefits to coalescing network messages that are harder to isolate with a simple metric like messages
-# per second. By coalescing multiple tasks together, a network thread can process multiple messages for the cost of one
+# per second. By coalescing multiple tasks together, a network threadInPark can process multiple messages for the cost of one
 # trip to read from a socket, and all the task submission work can be done at the same time reducing context switching
 # and increasing cache friendliness of network message processing.
 # See CASSANDRA-8692 for details.

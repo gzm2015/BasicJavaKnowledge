@@ -52,7 +52,7 @@ public class InterRuptThreadTest {
             for (;;){
                 try {
                     super.run();
-                    System.out.println(Thread.currentThread().getName()+" thread running");
+                    System.out.println(Thread.currentThread().getName()+" threadInPark running");
                     if(Thread.currentThread().isInterrupted()){
                         System.out.println("非阻塞线程检测到中断标志位变化");
                         break;
@@ -76,7 +76,7 @@ public class InterRuptThreadTest {
             for (;;){
                 try {
                    /* super.run();*/
-                    System.out.println(Thread.currentThread().getName()+" thread running");
+                    System.out.println(Thread.currentThread().getName()+" threadInPark running");
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     System.out.println(Thread.currentThread().getName()+"中断异常");

@@ -21,7 +21,7 @@ import java.util.stream.Stream;
  *
  * https://xwjie.github.io/webflux/webflux-study-path.html
  * stream 可以分为中断操作和中间操作
- *        其中不能放stream的都属于中断操作 findAndy findfirst max min .......
+ *        其中不能放stream的都属于中断操作 findAndy findfirst max min reduce foreach count.......
  *
  *        短路操作和非短路操作
  *        Stream.generate 这种产生无限流的操作需要一个终止产生流的操作

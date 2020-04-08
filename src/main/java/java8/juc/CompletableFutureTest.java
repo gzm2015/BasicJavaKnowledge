@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * @Author:lmk
  * @Date: 2020/3/18   17:35
- * @Description:
+ * @Description: 要理解 CompletableFuture 有必要先了解stream的惰性求值特性 见RunStream 类
  */
 public class CompletableFutureTest {
 
@@ -19,7 +19,7 @@ public class CompletableFutureTest {
 
     public static void main(String[] args) {
         //runAsync 执行不需要结果的
-        CompletableFuture future = CompletableFuture.runAsync(() -> {
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             try {
                 TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
@@ -43,7 +43,10 @@ public class CompletableFutureTest {
         CompletableFuture<String> future3 = future2.thenApply(s -> s+"   then apply").thenApply(s -> s+" second apply");
 
         //不要结果 thenAccept thenRun
-        CompletableFuture<Void> future4 = future2.thenAccept(s -> System.out.println(s+"    future4 runing"));
+        CompletableFuture<Void> future4 = future2.thenAccept(s -> {
+            s=s+"addparmonfuture4";
+            System.out.println(s+"    future4 runing");
+        });
 
         try {
             System.out.println("prepare get");
@@ -51,6 +54,7 @@ public class CompletableFutureTest {
             System.out.println("future2 get:"+future2.get());
             System.out.println("future3 get:"+future3.get());
             System.out.println("future4 get:"+future4.get());
+            System.out.println("future2 get:"+future2.get());
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -61,7 +65,9 @@ public class CompletableFutureTest {
         CompletableFuture<String> thenCompose = getcompose1("compose1").thenCompose(CompletableFutureTest::getcompose2);
 
         //thenCombine 适合没有依赖关系的两个future结合
-        //得到的结果是 bitfuntion中返回的结果
+        //得到的结果是 bitfuntion中返回的结果 thenCombine(
+        //        CompletionStage<? extends U> other,
+        //        BiFunction<? super T,? super U,? extends V> fn)
         CompletableFuture<String> combinedFuture = getcompose1("combine1",8).thenCombine(getcompose1("combine2",1),(s, s2) ->{
             System.out.println("combine param1: "+s);
             System.out.println("combine param2: "+s2);
@@ -69,7 +75,9 @@ public class CompletableFutureTest {
         } );
 
         try {
+            //thenCompose resp :compose2
             System.out.println("thenCompose resp :"+thenCompose.get());
+            //thenCombine resp hello
             System.out.println("thenCombine resp " + combinedFuture.get());
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();

@@ -87,7 +87,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.0.0.Final</version>
+            <version>4.1.42.Final</version>
         </dependency>
 
         <!--多线程单元测试支持 不太好用 原Thread很多方法用不了-->

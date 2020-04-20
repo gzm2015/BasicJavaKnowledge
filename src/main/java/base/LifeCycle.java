@@ -3,7 +3,7 @@ package base;
 public class LifeCycle {
     // 静态属性
     private static String staticField = getStaticField();
-    // 静态方法块
+    // 静态代码块
     static {
         System.out.println(staticField);
         System.out.println("静态方法块初始化");
@@ -11,7 +11,7 @@ public class LifeCycle {
     }
     // 普通属性
     private String field = getField();
-    // 普通方法块
+    // 普通代码块
     {
         System.out.println(field);
         System.out.println("普通方法块初始化");
@@ -35,6 +35,7 @@ public class LifeCycle {
         return filed;
     }   
     /**
+     * 执行结果
      * 静态属性初始化
      * Static Field Initial
      * 静态方法块初始化
@@ -57,6 +58,7 @@ public class LifeCycle {
      */
     public static void main(String[] argc) {
         new LifeCycle();
+        System.out.println("实例化第二个对象============");
         new LifeCycle();
     }
 }

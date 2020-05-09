@@ -15,7 +15,7 @@ public class RentReadWriteLockTest {
         Thread t1 = new Thread(()->test.readlock());
         t1.start();
         Thread t2 = new Thread(()->test.readlock());
-        t2.start();
+        //t2.start();
         //t1 t2 可重入
         Thread t3 = new Thread(()->test.writeLock());
         t3.start();
@@ -47,7 +47,7 @@ public class RentReadWriteLockTest {
             }
             System.out.println(Thread.currentThread().getName()+"   i");
         }
-        rwl.readLock().unlock();
+        rwl.writeLock().unlock();
     }
 
 }
